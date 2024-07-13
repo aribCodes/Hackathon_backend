@@ -20,11 +20,11 @@ const connectDb=async()=>{
 app.use(express.json())
 app.use(cors(corsConfig))
 app.use(bodyParser.json())
+app.use("/", (req,res)=>{ res.send("server is running")})
 app.use("/applicant",ApplicantRoute)
 app.use("/admin",adminRoute)
 
 app.listen(PORT,()=>{
     connectDb()
     console.log(`Server listening on port ${PORT}`)
-
 })
