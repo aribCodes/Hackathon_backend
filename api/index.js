@@ -2,10 +2,10 @@ const express=require("express")
 const mongoose=require("mongoose")
 const cors = require('cors')
 const bodyParser=require('body-parser')
-const config=require("./src/configs/server.config.js")
-const {corsConfig}=require("./src/configs/cors.config.js")
-const {route:ApplicantRoute}=require("./src/routes/applicant.route.js")
-const {route:adminRoute}=require("./src/routes/admin.route.js")
+const config=require("../src/configs/server.config.js")
+const {corsConfig}=require("../src/configs/cors.config.js")
+const {route:ApplicantRoute}=require("../src/routes/applicant.route.js")
+const {route:adminRoute}=require("../src/routes/admin.route.js")
 
 
 const app=express()
@@ -20,7 +20,7 @@ const connectDb=async()=>{
 app.use(express.json())
 app.use(cors(corsConfig))
 app.use(bodyParser.json())
-app.use("/", (req,res)=>{ res.send("server is running")})
+app.use("/", (req,res)=>{ res.json({message:"server is running"})})
 app.use("/applicant",ApplicantRoute)
 app.use("/admin",adminRoute)
 
