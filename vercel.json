@@ -8,7 +8,7 @@
     }
   ],
   "functions": {
-    "api/**/*.js": {
+    "index.js": {
       "maxDuration": 10
     }
   }
