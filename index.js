@@ -20,7 +20,6 @@ const connectDb=async()=>{
 app.use(express.json())
 app.use(cors(corsConfig))
 app.use(bodyParser.json())
-app.use("/", (req,res)=>{ res.json({message:"server is running"})})
 app.use("/applicant",ApplicantRoute)
 app.use("/admin",adminRoute)
 
