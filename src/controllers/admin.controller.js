@@ -9,7 +9,7 @@ const {
   updateByCnic,
 } = require("../services/applicant.service.js");
 const { updateCourseByName } = require("../services/course.service.js");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
