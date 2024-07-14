@@ -1,8 +1,6 @@
 const express = require("express");
-const multer=require("multer")
 const route = express.Router();
 const authenticated = require("../Middlewares/auth.js");
-const upload=multer({dest:'./src/upload/images'})
 const {
   login,
   createApplicant,
@@ -21,7 +19,7 @@ const {
 } = require("../controllers/course.controller.js");
 
 route.get("/login", login);
-route.post("/create-applicant",upload.single("image") ,authenticated, createApplicant); // checking
+route.post("/create-applicant",authenticated, createApplicant); // checking
 route.get("/get-applicant/:applicantId", authenticated, getSingleApplicantById);
 route.get("/get-applicant-by-cnic/:cnic", authenticated, getApplicantByCnic);
 route.get(
