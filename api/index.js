@@ -23,6 +23,9 @@ app.use(cors(corsConfig))
 app.use(bodyParser.json())
 app.use(cookieParser())
 
+app.get("/",(req,res)=>{
+    res.send("Welcome to the Home Page")
+})
 app.use("/applicant",ApplicantRoute)
 app.use("/admin",adminRoute)
 
