@@ -1,6 +1,7 @@
 const express=require("express")
 const mongoose=require("mongoose")
 const cors = require('cors')
+const cookieParser=require("cookie-parser")
 const bodyParser=require('body-parser')
 const config=require("../src/configs/server.config.js")
 const {corsConfig}=require("../src/configs/cors.config.js")
@@ -20,6 +21,8 @@ const connectDb=async()=>{
 app.use(express.json())
 app.use(cors(corsConfig))
 app.use(bodyParser.json())
+app.use(cookieParser())
+
 app.use("/applicant",ApplicantRoute)
 app.use("/admin",adminRoute)
 

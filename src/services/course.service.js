@@ -20,6 +20,15 @@ const getCourses=async(data)=>{
     }
 }
 
+const courseById= async(courseId)=>{
+    try {
+        const response=await CourseModel.findById({_id:courseId});
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const updateById = async (data)=>{
     try{
         const response=await CourseModel.findOneAndUpdate({_id:data._id},data)
@@ -53,6 +62,7 @@ const deleteById=async(deleteCourseId)=>{
 module.exports={
     addCourse,
     getCourses,
+    courseById,
     updateById,
     updateCourseByName,
     deleteById,

@@ -1,4 +1,5 @@
 const Admin = require("../models/admin.model.js");
+const config=require("../configs/server.config.js")
 const {
   newApplicant,
   allApplicants,
@@ -143,12 +144,18 @@ const login = async (req, res) => {
         .json({ message: "Invalid Credential", success: false });
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "3d",
+      expiresIn: config.tokenExpireIn,
     });
 
+    // const cookieOptions={
+    //   expires:new Date(Date.now() + config.jwtExpireIn * 86400000), //24hour * 60min * 60 sec *1000milliseconds
+    //   httpOnly:true,
+    // }
+
+    // res.cookie("jwtToken",token,cookieOptions)
     res
-      .status(200)
-      .json({ message: `Welcome ${user.name}`, token, success: true });
+    .status(200)
+    .json({ message: `Welcome ${user.name}`, token, success: true });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

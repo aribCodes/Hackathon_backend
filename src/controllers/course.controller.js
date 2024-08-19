@@ -1,6 +1,7 @@
 const {
   addCourse,
   getCourses,
+  courseById,
   updateById,
   deleteById,
 } = require("../services/course.service");
@@ -35,6 +36,22 @@ const getAllCourses = async (req, res) => {
   }
 };
 
+const getCourseById=async(req,res)=>{
+  try {
+    const courseId=req.params.courseId
+    const response=await courseById(courseId)
+    if (!response)
+      return res.status(400).json({
+        success: false,
+        message: `Could not find course by this ${courseId} id `,
+      });
+
+    return res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 const updateCourseById = async (req, res) => {
   try {
     const updateCourse = await updateById(req.body);
@@ -63,6 +80,7 @@ const deleteCourseById = async (req, res) => {
 module.exports = {
   createCourse,
   getAllCourses,
+  getCourseById,
   updateCourseById,
   deleteCourseById,
 };
